@@ -3,7 +3,7 @@ Given /the home page/ do
 end
 
 When /^I fill in "(.*?)" with "(.*?)"$/ do |input, value|
-  pending
+  fill_in input, with: value
 end
 
 When /^I press "(.*?)"$/ do |button|
