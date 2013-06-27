@@ -2,7 +2,7 @@ Given /the home page/ do
   visit(root_path)
 end
 
-When /^I fill in "(.*?) with "(.*?)"$/ do |input, value|
+When /^I fill in "(.*?)" with "(.*?)"$/ do |input, value|
   pending
 end
 
