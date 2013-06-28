@@ -7,7 +7,7 @@ When /^I fill in "(.*?)" with "(.*?)"$/ do |input, value|
 end
 
 When /^I press "(.*?)"$/ do |button|
-  click_button 'Save'
+  click_button button
 end
 
 Then /the bookmark page$/ do
