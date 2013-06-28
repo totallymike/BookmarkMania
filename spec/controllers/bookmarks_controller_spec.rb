@@ -8,10 +8,9 @@ describe BookmarksController do
   end
 
   describe 'POST #create' do
+    let(:post_create) {post :create, bookmark: attributes_for(:bookmark)}
     it 'accepts a url and some tags and creates a bookmark' do
-      expect {
-        post :create, bookmark: attributes_for(:bookmark)
-      }.to change(Bookmark, :count).by 1
+      expect{post_create}.to change(Bookmark, :count).by 1
     end
   end
 end
