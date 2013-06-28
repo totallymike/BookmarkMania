@@ -1,5 +1,5 @@
 %h3 Add a bookmark
 = form_for(@bookmark) do |f|
   = f.text_field :url
-  = f.text_field :tags
+  = f.text_field :tags_list
   = f.submit 'Save'
