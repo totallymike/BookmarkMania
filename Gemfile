@@ -32,6 +32,7 @@ gem 'haml'
 group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails'
 end
 
 group :test do
