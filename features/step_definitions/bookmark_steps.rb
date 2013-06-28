@@ -11,7 +11,7 @@ When /^I press "(.*?)"$/ do |button|
 end
 
 Then /the bookmark page$/ do
-  pending
+  current_path.should =~ %r{/bookmarks/\d+}
 end
 
 Then /^I should see "(.*?)$/ do |content|
