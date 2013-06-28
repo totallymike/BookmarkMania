@@ -14,6 +14,6 @@ Then /the bookmark page$/ do
   current_path.should =~ %r{/bookmarks/\d+}
 end
 
-Then /^I should see "(.*?)$/ do |content|
-  pending
+Then /^I should see "(.*?)"$/ do |content|
+  page.should have_content content
 end
