@@ -1,5 +1,5 @@
 %h3 Add a bookmark
-= form_tag({controller: 'bookmarks', action: 'create'}, method: 'post') do
-  = text_field :bookmark, :url
-  = text_field :bookmark, :tags
-  = submit_tag 'Save'
+= form_for(@bookmark) do |f|
+  = f.text_field :url
+  = f.text_field :tags
+  = f.submit 'Save'
