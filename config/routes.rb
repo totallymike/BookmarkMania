@@ -1,4 +1,4 @@
 BookmarkMania::Application.routes.draw do
-  resource :bookmarks, only: [:create]
+  resources :bookmarks
   root to: 'welcome#index'
 end
