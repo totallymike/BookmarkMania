@@ -1,4 +1,5 @@
 %h3 Add a bookmark
-= form_tag do
+= form_tag bookmarks_path, method: 'post' do
   = text_field_tag :url
   = text_field_tag :tags
+  = submit_tag 'Save'
