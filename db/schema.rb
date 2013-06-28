@@ -14,8 +14,10 @@
 ActiveRecord::Schema.define(version: 20130628010259) do
 
   create_table "bookmarks", force: true do |t|
-    t.string "url"
-    t.string "tags"
+    t.string   "url"
+    t.string   "tags"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
