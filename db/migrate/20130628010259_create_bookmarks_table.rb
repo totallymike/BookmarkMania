@@ -3,6 +3,8 @@ class CreateBookmarksTable < ActiveRecord::Migration
     create_table :bookmarks do |t|
       t.string :url
       t.string :tags # This won't be a string forever.  For now it's fine.
+
+      t.timestamps
     end
   end
 end
