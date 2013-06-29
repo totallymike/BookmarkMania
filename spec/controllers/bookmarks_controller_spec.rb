@@ -34,14 +34,22 @@ describe BookmarksController do
       expect(response).to redirect_to root_url
     end
 
-    it 'instantiates tags from the provided list' do
-      expect{post_create}.to change(Tag, :count).by 2
+    describe 'tag generation' do
+      it 'instantiates tags from the provided list' do
+        expect{post_create}.to change(Tag, :count).by 2
+      end
+
+      it 'Does not recreate tags that already exist' do
+        create(:tag, name: 'Tag1')
+        create(:tag, name: 'Tag2')
+        expect{post_create}.to change(Tag, :count).by 0
+      end
     end
 
-    it 'Does not recreate tags that already exist' do
-      create(:tag, name: 'Tag1')
-      create(:tag, name: 'Tag2')
-      expect{post_create}.to change(Tag, :count).by 0
+    describe 'site generation' do
+      it 'associates the bookmark with a Site related to its domain' do
+        expect{post_create}.to change(Site, :count).by 1
+      end
     end
   end
 end

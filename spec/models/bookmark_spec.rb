@@ -9,6 +9,15 @@ describe Bookmark do
     end
   end
 
+  describe 'Site' do
+    it 'correlates a bookmark to a site' do
+      bookmark = create(:bookmark)
+      expect(bookmark.site.domain).to eq 'example.com'
+      bookmark = create(:bookmark, url: 'http://www.reddit.com/r/ruby')
+      expect(bookmark.site.domain).to eq 'www.reddit.com'
+    end
+  end
+
   describe 'Validations' do
     it 'successfully validates a bookmark with tags and a URL' do
       expect(build(:bookmark, tags_list: 'Tag1, Tag2')).to be_valid
