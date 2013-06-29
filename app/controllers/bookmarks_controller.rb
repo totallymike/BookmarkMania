@@ -8,6 +8,9 @@ class BookmarksController < ApplicationController
 
     if @bookmark.save
       redirect_to @bookmark
+    else
+      flash[:error] = 'URL required'
+      redirect_to root_url
     end
   end
 

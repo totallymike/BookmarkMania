@@ -28,6 +28,12 @@ describe BookmarksController do
       expect{post_no_tags}.to change(Bookmark, :count).by 1
     end
 
+    it 'presents an error if no URL is provided' do
+      post :create, bookmark: {url: nil}
+      expect(flash[:error]).to eq 'URL required'
+      expect(response).to redirect_to root_url
+    end
+
     it 'instantiates tags from the provided list' do
       expect{post_create}.to change(Tag, :count).by 2
     end

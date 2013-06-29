@@ -13,5 +13,9 @@ describe Bookmark do
     it 'successfully validates a bookmark with tags and a URL' do
       expect(build(:bookmark, tags_list: 'Tag1, Tag2')).to be_valid
     end
+
+    it 'refuses to validate a bookmark without a URL' do
+      expect(build(:bookmark, url: nil)).to have(1).errors_on :url
+    end
   end
 end
