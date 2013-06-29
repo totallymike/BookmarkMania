@@ -8,4 +8,10 @@ describe Bookmark do
       expect(bookmark.tags_list).to eq 'Tag1 Tag2'
     end
   end
+
+  describe 'Validations' do
+    it 'successfully validates a bookmark with tags and a URL' do
+      expect(build(:bookmark, tags_list: 'Tag1, Tag2')).to be_valid
+    end
+  end
 end
