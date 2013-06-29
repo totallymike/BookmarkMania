@@ -10,6 +10,11 @@ describe BookmarksController do
   end
 
   describe 'POST #create' do
+    let(:post_no_tags) {
+      post :create,
+        bookmark: attributes_for(:bookmark)
+    }
+
     let(:post_create) {
       post :create,
         bookmark: attributes_for(:bookmark, tags_list: 'Tag1, Tag2')
@@ -17,6 +22,10 @@ describe BookmarksController do
 
     it 'accepts a url and some tags and creates a bookmark' do
       expect{post_create}.to change(Bookmark, :count).by 1
+    end
+
+    it 'accepts a url and no tags and creates a bookmark' do
+      expect{post_no_tags}.to change(Bookmark, :count).by 1
     end
 
     it 'instantiates tags from the provided list' do
