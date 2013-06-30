@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'fakeweb'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -11,6 +12,21 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
+
+FakeWeb.allow_net_connect = false
+
+page_body = <<-end_of_page
+      <!DOCTYPE html>
+      <html>
+        <head><title>Example Page Number 1!</title></head>
+        <body>A web page.</body>
+      </html>
+end_of_page
+
+reddit_body = page_body.sub(/Ex.+1!/, 'Reddit')
+
+FakeWeb.register_uri(:get, 'http://example.com/page1', body: page_body)
+FakeWeb.register_uri(:get, 'http://www.reddit.com/r/ruby', body: reddit_body)
 
 RSpec.configure do |config|
   # Include FactoryGirl methods in example namespace.
