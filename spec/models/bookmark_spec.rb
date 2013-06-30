@@ -21,6 +21,12 @@ describe Bookmark do
     end
   end
 
+  describe '#shortened_url' do
+    it 'associates a shortened URL with each bookmark' do
+      expect(bookmark.shortened_url).to match %r[\w{5}]
+    end
+  end
+
   describe '#title' do
     it 'fetches the title of the actual web site from the provided URL' do
       expect(bookmark.title).to eq 'Example Page Number 1!'
