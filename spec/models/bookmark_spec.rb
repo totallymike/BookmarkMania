@@ -9,6 +9,13 @@ describe Bookmark do
     end
   end
 
+  describe '#title' do
+    it 'fetches the title of the actual web site from the provided URL' do
+      bookmark = create(:bookmark)
+      expect(bookmark.title).to eq 'Example Page Number 1!'
+    end
+  end
+
   describe 'Site' do
     it 'correlates a bookmark to a site' do
       bookmark = create(:bookmark)

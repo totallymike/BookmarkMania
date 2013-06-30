@@ -7,3 +7,4 @@ Feature: Bookmark storage
     Then I should be on the bookmark page
     And I should see "http://www.example.com/page1"
     And I should see "foo bar"
+    And I should see "Example Page Number 1!"
