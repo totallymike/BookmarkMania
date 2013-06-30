@@ -8,3 +8,4 @@ Feature: Bookmark storage
     And I should see "http://example.com/page1"
     And I should see "foo bar"
     And I should see "Example Page Number 1!"
+    And I should see a shortened URL
