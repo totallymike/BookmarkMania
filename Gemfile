@@ -37,6 +37,7 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'fakeweb', require: false
 end
 
 group :doc do
