@@ -17,3 +17,7 @@ end
 Then /^I should see "(.*?)"$/ do |content|
   page.should have_content content
 end
+
+Then /shortened URL$/ do
+  page.should have_link(/\w{6}/)
+end
