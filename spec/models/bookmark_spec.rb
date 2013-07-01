@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Bookmark do
+  let(:bookmark) { create(:bookmark) }
+  let(:bookmark_with_redirect) {
+    create(:bookmark,
+      url: 'http://example.com/will_redirect_to_page1')
+  }
   describe '#tags_list' do
     it 'prints the list of tags separated by a space' do
       bookmark = create(:bookmark_with_tags)
@@ -11,19 +16,15 @@ describe Bookmark do
 
   describe '#title' do
     it 'fetches the title of the actual web site from the provided URL' do
-      bookmark = create(:bookmark)
       expect(bookmark.title).to eq 'Example Page Number 1!'
     end
     it 'follows redirects too' do
-      bookmark = create(:bookmark,
-        url: 'http://example.com/will_redirect_to_page1')
-      expect(bookmark.title).to eq 'Example Page Number 1!'
+      expect(bookmark_with_redirect.title).to eq 'Example Page Number 1!'
     end
   end
 
   describe 'Site' do
     it 'correlates a bookmark to a site' do
-      bookmark = create(:bookmark)
       expect(bookmark.site.domain).to eq 'example.com'
       bookmark = create(:bookmark, url: 'http://www.reddit.com/r/ruby')
       expect(bookmark.site.domain).to eq 'www.reddit.com'
