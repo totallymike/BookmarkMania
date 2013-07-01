@@ -31,6 +31,8 @@ gem 'haml'
 
 gem 'nokogiri'
 
+gem 'httparty'
+
 group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.0'

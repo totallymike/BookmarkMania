@@ -23,7 +23,7 @@ class Bookmark < ActiveRecord::Base
 
   private
   def fetch_page_metadata
-    page = Net::HTTP.get_response(URI.parse(self.url))
+    page = HTTParty.get(self.url)
     self.title = extract_title_from_html(page.body)
   end
 
