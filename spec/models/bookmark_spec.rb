@@ -14,6 +14,11 @@ describe Bookmark do
       bookmark = create(:bookmark)
       expect(bookmark.title).to eq 'Example Page Number 1!'
     end
+    it 'follows redirects too' do
+      bookmark = create(:bookmark,
+        url: 'http://example.com/will_redirect_to_page1')
+      expect(bookmark.title).to eq 'Example Page Number 1!'
+    end
   end
 
   describe 'Site' do
