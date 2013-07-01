@@ -27,6 +27,9 @@ reddit_body = page_body.sub(/Ex.+1!/, 'Reddit')
 
 FakeWeb.register_uri(:get, 'http://example.com/page1', body: page_body)
 FakeWeb.register_uri(:get, 'http://www.reddit.com/r/ruby', body: reddit_body)
+FakeWeb.register_uri(:get, 'http://example.com/will_redirect_to_page1',
+                     status: ['302', 'Temporarily moved'],
+                     location: 'http://example.com/page1')
 
 RSpec.configure do |config|
   # Include FactoryGirl methods in example namespace.
