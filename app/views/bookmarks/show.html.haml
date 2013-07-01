@@ -3,3 +3,5 @@
   = @bookmark.title
 %p
   = @bookmark.tags_list
+%p
+  = link_to @bookmark.shortened_url, @bookmark.shortened_url, id: 'short_url'

@@ -19,5 +19,5 @@ Then /^I should see "(.*?)"$/ do |content|
 end
 
 Then /shortened URL$/ do
-  page.should have_link(/\w{6}/)
+  find('a#short_url').text.should match %r[/\w{6}$]
 end
