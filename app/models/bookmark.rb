@@ -1,4 +1,5 @@
 class Bookmark < ActiveRecord::Base
+  before_create :find_canonical_url
   before_create :find_or_create_site
   before_create :fetch_page_metadata
 
@@ -16,12 +17,23 @@ class Bookmark < ActiveRecord::Base
     self.tags = tag_names.map{|tag| Tag.find_or_create_by(name: tag)}
   end
 
-  def find_or_create_site()
+  private
+  def find_canonical_url
+    res = HTTParty.head(self.url, follow_redirects: false)
+    self.url = if res.code == 301
+      res = HTTParty.head(res.headers['location'],
+        maintain_method_across_redirects: true)
+      res.request.last_uri.to_s
+    else
+      url
+    end
+  end
+
+  def find_or_create_site
     domain = extract_domain(self.url)
     self.site = Site.find_or_create_by(domain: domain)
   end
 
-  private
   def fetch_page_metadata
     page = HTTParty.get(self.url)
     self.title = extract_title_from_html(page.body)
