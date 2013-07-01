@@ -23,7 +23,7 @@ describe Bookmark do
 
   describe '#shortened_url' do
     it 'associates a shortened URL with each bookmark' do
-      expect(bookmark.shortened_url).to match %r[\w{5}]
+      expect(bookmark.shortened_url).to match %r[^/\w{6}$]
     end
   end
 
