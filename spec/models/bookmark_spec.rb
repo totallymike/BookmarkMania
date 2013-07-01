@@ -6,6 +6,13 @@ describe Bookmark do
     create(:bookmark,
       url: 'http://example.com/will_redirect_to_page1')
   }
+
+  describe '#url' do
+    it 'uses canonical URLs when necessary' do
+      expect(bookmark_with_redirect.url).to eq 'http://example.com/page1'
+    end
+  end
+
   describe '#tags_list' do
     it 'prints the list of tags separated by a space' do
       bookmark = create(:bookmark_with_tags)
