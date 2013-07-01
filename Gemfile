@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'haml'
 
+gem 'nokogiri'
+
 group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.0'
