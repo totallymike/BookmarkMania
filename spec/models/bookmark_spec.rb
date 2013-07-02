@@ -8,6 +8,10 @@ describe Bookmark do
   }
 
   describe '#url' do
+    it 'assigns a protocol to a URL if none is given' do
+      bookmark = create(:bookmark, url: 'example.com/page1')
+      expect(bookmark.url).to eq 'http://example.com/page1'
+    end
     it 'uses canonical URLs when necessary' do
       expect(bookmark_with_redirect.url).to eq 'http://example.com/page1'
     end

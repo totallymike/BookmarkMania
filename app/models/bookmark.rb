@@ -20,11 +20,21 @@ class Bookmark < ActiveRecord::Base
 
   private
   def find_canonical_url
+    self.url = formulate_url(self.url)
     res = HTTParty.head(self.url, follow_redirects: false)
     self.url = if res.code == 301
       res = HTTParty.head(res.headers['location'],
         maintain_method_across_redirects: true)
       res.request.last_uri.to_s
+    else
+      url
+    end
+  end
+
+  def formulate_url(url)
+    uri = URI.parse(url)
+    if uri.scheme.nil?
+      'http://' << url
     else
       url
     end
