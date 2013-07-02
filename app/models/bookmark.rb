@@ -1,5 +1,6 @@
 class Bookmark < ActiveRecord::Base
   before_create :find_canonical_url
+  before_create :generate_shortened_url
   before_create :find_or_create_site
   before_create :fetch_page_metadata
 
@@ -27,6 +28,10 @@ class Bookmark < ActiveRecord::Base
     else
       url
     end
+  end
+
+  def generate_shortened_url
+    self.shortened_url = '/' << [*('A'..'Z'), *('a'..'z'), *('0'..'9')].sample(6).join
   end
 
   def find_or_create_site
