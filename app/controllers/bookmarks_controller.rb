@@ -22,8 +22,9 @@ class BookmarksController < ApplicationController
 
   private
   def build_short_url(bookmark)
-      request.raw_host_with_port <<
-      short_url_path(bookmark.shortened_url)
+      request.protocol <<
+        request.raw_host_with_port <<
+        short_url_path(bookmark.shortened_url)
   end
   def bookmark_params
     params.require(:bookmark).permit(:url, :tags_list)
