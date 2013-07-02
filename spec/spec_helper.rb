@@ -31,6 +31,10 @@ FakeWeb.register_uri(:any, 'http://example.com/will_redirect_to_page1',
                      status: ['301', 'Permanently moved'],
                      location: 'http://example.com/page1')
 
+Capybara.register_driver :rack_test do |app|
+  Capybara::RackTest::Driver.new(app, follow_redirects: false)
+end
+
 RSpec.configure do |config|
   # Include FactoryGirl methods in example namespace.
   config.include FactoryGirl::Syntax::Methods
