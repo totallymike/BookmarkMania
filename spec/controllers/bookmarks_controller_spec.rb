@@ -9,6 +9,14 @@ describe BookmarksController do
     end
   end
 
+  describe 'GET #short_url' do
+    let(:bookmark) {create(:bookmark)}
+    it 'redirects to the url stored by the bookmark' do
+      get :short_url, short_url: bookmark.shortened_url
+      expect(response).to redirect_to bookmark.url
+    end
+  end
+
   describe 'POST #create' do
     let(:post_no_tags) {
       post :create,
