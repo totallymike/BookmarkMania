@@ -4,4 +4,4 @@
 %p
   = @bookmark.tags_list
 %p
-  = link_to @bookmark.shortened_url, @bookmark.shortened_url, id: 'short_url'
+  = link_to @short_url, short_url_path(@bookmark.shortened_url)
