@@ -31,7 +31,7 @@ class Bookmark < ActiveRecord::Base
   end
 
   def generate_shortened_url
-    self.shortened_url = '/' << [*('A'..'Z'), *('a'..'z'), *('0'..'9')].sample(6).join
+    self.shortened_url = [*('A'..'Z'), *('a'..'z'), *('0'..'9')].sample(6).join
   end
 
   def find_or_create_site
