@@ -42,9 +42,9 @@ describe Bookmark do
 
   describe 'Site' do
     it 'correlates a bookmark to a site' do
-      expect(bookmark.site.domain).to eq 'example.com'
+      expect(bookmark.site.url).to eq 'http://example.com'
       bookmark = create(:bookmark, url: 'http://www.reddit.com/r/ruby')
-      expect(bookmark.site.domain).to eq 'www.reddit.com'
+      expect(bookmark.site.url).to eq 'http://www.reddit.com'
     end
   end
 
