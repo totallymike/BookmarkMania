@@ -4,8 +4,12 @@ class BookmarksController < ApplicationController
   end
 
   def show
-    @bookmark = Bookmark.find(params[:id])
-    @short_url = build_short_url(@bookmark)
+    @bookmark = current_user.bookmarks.find_by(id: params[:id])
+    if @bookmark.nil?
+      redirect_to bookmarks_path
+    else
+      @short_url = build_short_url(@bookmark)
+    end
   end
 
   def create
