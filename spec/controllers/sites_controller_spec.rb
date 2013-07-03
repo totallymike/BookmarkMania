@@ -31,10 +31,17 @@ describe SitesController do
   let(:valid_session) { {} }
 
   describe "GET index" do
+    let(:user) {
+      user = create(:user)
+      sign_in user
+      return user
+    }
+
     it "assigns all sites as @sites" do
-      site = create(:site)
+      attached_site   = create(:site, user_id: user.id)
+      unattached_site = create(:site, url: 'http://www.reddit.com')
       get :index, {}, valid_session
-      assigns(:sites).should eq([site])
+      assigns(:sites).should eq([attached_site])
     end
   end
 
