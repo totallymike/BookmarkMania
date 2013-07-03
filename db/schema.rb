@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130701224027) do
+ActiveRecord::Schema.define(version: 20130703153521) do
 
   create_table "bookmarks", force: true do |t|
     t.string   "url"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20130701224027) do
 
   create_table "sites", force: true do |t|
     t.string   "title"
-    t.string   "domain"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

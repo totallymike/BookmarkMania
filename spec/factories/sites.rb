@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :site do
     title "Examples!"
-    domain 'example.com'
+    url 'http://example.com'
   end
 end
