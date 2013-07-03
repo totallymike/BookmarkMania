@@ -1,6 +1,22 @@
 require 'spec_helper'
 
 describe BookmarksController do
+  describe 'GET #index' do
+    let (:user) {
+      user = create(:user)
+      sign_in user
+      return user
+    }
+
+    it 'displays only bookmarks attached to a user' do
+      attached_bookmark   = create(:bookmark, user_id: user.id)
+      unattached_bookmark = create(:bookmark, url: 'http://example.com/page2')
+      get :index
+      expect(assigns).to include attached_bookmark
+      expect(assigns).to not_include unattached_bookmark
+    end
+  end
+
   describe 'GET #show' do
     it 'presents a bookmark upon success' do
       bookmark = create(:bookmark)
