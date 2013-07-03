@@ -6,5 +6,7 @@
   = csrf_meta_tags
 %body
   %div{class: 'wrapper'}
-
+    %div{id: 'flash'}
+      %p{class: 'notice'}= flash[:notice]
+      %p{class: 'alert'}= flash[:alert]
     = yield
