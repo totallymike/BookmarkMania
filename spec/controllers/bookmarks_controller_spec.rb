@@ -12,8 +12,8 @@ describe BookmarksController do
       attached_bookmark   = create(:bookmark, user_id: user.id)
       unattached_bookmark = create(:bookmark, url: 'http://example.com/page2')
       get :index
-      expect(assigns).to include attached_bookmark
-      expect(assigns).to not_include unattached_bookmark
+      expect(assigns[:bookmarks]).to include attached_bookmark
+      expect(assigns[:bookmarks]).to_not include unattached_bookmark
     end
   end
 
