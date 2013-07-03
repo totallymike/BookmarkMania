@@ -4,6 +4,7 @@ class Bookmark < ActiveRecord::Base
   before_create :find_or_create_site
 
   belongs_to :site
+  belongs_to :user
   has_and_belongs_to_many :tags
 
   validates :url, presence: true
