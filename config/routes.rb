@@ -1,6 +1,6 @@
 BookmarkMania::Application.routes.draw do
   devise_for :users
-  resources :bookmarks, only: [:show, :short_url, :create]
+  resources :bookmarks, only: [:index, :show, :short_url, :create]
   resources :sites, only: [:show, :index]
   resources :tags, only: [:show, :index]
   get '/:short_url',

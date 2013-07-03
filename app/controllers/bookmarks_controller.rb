@@ -1,4 +1,8 @@
 class BookmarksController < ApplicationController
+  def index
+    @bookmarks = current_user.bookmarks
+  end
+
   def show
     @bookmark = Bookmark.find(params[:id])
     @short_url = build_short_url(@bookmark)
