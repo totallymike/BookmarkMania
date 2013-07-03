@@ -18,10 +18,21 @@ describe BookmarksController do
   end
 
   describe 'GET #show' do
+    before(:each) do
+      @user = create(:user)
+      sign_in @user
+    end
+
     it 'presents a bookmark upon success' do
-      bookmark = create(:bookmark)
+      bookmark = create(:bookmark, user_id: @user.id)
       get :show, id: bookmark
       expect(assigns(:bookmark)).to eq bookmark
+    end
+
+    it "doesn't show somebody else's bookmarks" do
+      bookmark = create(:bookmark)
+      get :show, id: bookmark
+      expect(response).to redirect_to bookmarks_path
     end
   end
 
