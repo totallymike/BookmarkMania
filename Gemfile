@@ -33,6 +33,8 @@ gem 'nokogiri'
 
 gem 'httparty'
 
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
+
 group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec-rails', '~> 2.0'
