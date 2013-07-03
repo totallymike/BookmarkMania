@@ -30,14 +30,6 @@ describe TagsController do
   # TagsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all tags as @tags" do
-      tag = Tag.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:tags).should eq([tag])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested tag as @tag" do
       tag = Tag.create! valid_attributes
