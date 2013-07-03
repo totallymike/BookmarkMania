@@ -1,7 +1,8 @@
 %a{:href => @bookmark.url} #{@bookmark.url}
 %p
   = @bookmark.title
+#p
+  - @bookmark.tags.each do |tag|
+    = link_to tag.name, tag
 %p
-  = @bookmark.tags_list
-%p
-  = link_to @short_url, short_url_path(@bookmark.shortened_url)
+  = link_to @short_url, short_url_path(@bookmark.shortened_url), id: 'short_url'

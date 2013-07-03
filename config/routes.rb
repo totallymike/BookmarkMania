@@ -1,5 +1,6 @@
 BookmarkMania::Application.routes.draw do
-  resources :bookmarks
+  resources :bookmarks, only: [:show, :short_url, :create]
+  resources :tags
   get '/:short_url',
       to: 'bookmarks#short_url',
       short_url: /\w{6}/,
