@@ -29,10 +29,11 @@ class Bookmark < ActiveRecord::Base
 
   def find_or_create_site
     domain = extract_domain(self.url)
-    self.site = Site.find_or_create_by(domain: domain)
+    self.site = Site.find_or_create_by(url: domain)
   end
 
   def extract_domain(url)
-    URI(url).host
+    uri = URI(url)
+    "#{uri.scheme}://#{uri.host}"
   end
 end
