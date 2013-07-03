@@ -4,7 +4,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = current_user.sites.all
+    @sites = current_user.sites
   end
 
   # GET /sites/1
