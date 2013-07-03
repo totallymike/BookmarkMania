@@ -24,8 +24,10 @@ page_body = <<-end_of_page
 end_of_page
 
 reddit_body = page_body.sub(/Ex.+1!/, 'Reddit')
+page2_body  = page_body.sub(/Ex.+1!/, 'Example Page Number 2!')
 
 FakeWeb.register_uri(:any, 'http://example.com/page1', body: page_body)
+FakeWeb.register_uri(:any, 'http://example.com/page2', body: page2_body)
 FakeWeb.register_uri(:any, 'http://www.reddit.com/r/ruby', body: reddit_body)
 FakeWeb.register_uri(:any, 'http://example.com/will_redirect_to_page1',
                      status: ['301', 'Permanently moved'],
