@@ -6,7 +6,7 @@
   = csrf_meta_tags
 %body
   %div{class: 'navbar'}
-    = link_to 'Log in', new_user_session_path
+    = render 'shared/navbar'
 
   %div{class: 'wrapper'}
     %div{id: 'flash'}
