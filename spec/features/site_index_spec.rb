@@ -2,13 +2,7 @@ require 'spec_helper'
 
 feature 'The index of sites lists the titles of all sites' do
   scenario 'A user views the list of sites' do
-    user = create(:user)
-
-    visit root_path
-    click_link 'Log in'
-    fill_in 'user_email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_button 'Sign in'
+    user = log_in
 
     visit root_path
     fill_in 'bookmark_url', with: 'http://example.com/page1'

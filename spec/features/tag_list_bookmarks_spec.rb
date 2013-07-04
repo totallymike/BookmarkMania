@@ -2,12 +2,7 @@ require 'spec_helper'
 
 feature 'Tags link back to bookmarks' do
   scenario 'A user views a tag' do
-    user = create(:user)
-    visit root_path
-    click_link 'Log in'
-    fill_in 'user_email', with: user.email
-    fill_in 'user_password', with: user.password
-    click_button 'Sign in'
+    user = log_in
 
     create(:bookmark, url: 'http://example.com/page2', tags_list: 'Example1')
 

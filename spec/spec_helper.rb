@@ -44,6 +44,8 @@ RSpec.configure do |config|
   # Include FactoryGirl methods in example namespace.
   config.include FactoryGirl::Syntax::Methods
 
+  config.include LoginMacros
+
   # Set up DatabaseCleaner
   config.use_transactional_fixtures = false
 
