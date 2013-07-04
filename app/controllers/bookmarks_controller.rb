@@ -1,4 +1,5 @@
 class BookmarksController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:short_url]
   def index
     @bookmarks = current_user.bookmarks
   end
