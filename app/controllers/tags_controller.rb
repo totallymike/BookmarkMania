@@ -4,7 +4,7 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.with_bookmarks
+    @tags = Tag.with_bookmarks_for_user(current_user)
   end
 
   # GET /tags/1
