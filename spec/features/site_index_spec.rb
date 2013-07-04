@@ -4,7 +4,8 @@ feature 'The index of sites lists the titles of all sites' do
   scenario 'A user views the list of sites' do
     user = create(:user)
 
-    visit(new_user_session_path)
+    visit root_path
+    click_link 'Log in'
     fill_in 'user_email', with: user.email
     fill_in 'user_password', with: user.password
     click_button 'Sign in'
