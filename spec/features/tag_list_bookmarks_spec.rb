@@ -2,12 +2,30 @@ require 'spec_helper'
 
 feature 'Tags link back to bookmarks' do
   scenario 'A user views a tag' do
-    bookmark1 = create(:bookmark, url: 'http://example.com/page1', tags_list: 'Example1, Example2')
-    bookmark2 = create(:bookmark, url: 'http://example.com/page2', tags_list: 'Example1')
-    tag = Tag.find_by(name: 'Example1')
+    user = create(:user)
+    visit root_path
+    click_link 'Log in'
+    fill_in 'user_email', with: user.email
+    fill_in 'user_password', with: user.password
+    click_button 'Sign in'
 
+    create(:bookmark, url: 'http://example.com/page2', tags_list: 'Example1')
+
+    visit root_path
+    fill_in 'bookmark_url', with: 'http://example.com/page1'
+    fill_in 'bookmark_tags_list', with: 'Example1, Example2'
+    click_button 'Save'
+
+    visit root_path
+    fill_in 'bookmark_url', with: 'http://www.reddit.com/r/ruby'
+    fill_in 'bookmark_tags_list', with: 'Example1'
+    click_button 'Save'
+
+    tag = user.tags.find_by(name: 'Example1')
     visit(tag_path(tag))
-    expect(page).to have_link(bookmark1.title)
-    expect(page).to have_link(bookmark2.title)
+
+    expect(page).to have_link('Example Page Number 1!')
+    expect(page).to have_link('reddit: the front page of the internet')
+    expect(page).to_not have_link('Example Page Number 2!')
   end
 end
