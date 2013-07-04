@@ -13,8 +13,10 @@ describe Tag do
   describe '.with_bookmarks_for_user' do
     it 'only shows bookmarks belonging to a certain user' do
       user = create(:user)
-      tag1 = create(:bookmark, tags_list: 'Tag1', user_id: user.id)
-      tag2 = create(:bookmark, url: 'http://example.com/page2', tags_list: 'Tag2')
+      create(:bookmark, tags_list: 'Tag1', user_id: user.id)
+      create(:bookmark, url: 'http://example.com/page2', tags_list: 'Tag2')
+      tag1 = Tag.find_by(name: 'Tag1')
+      tag2 = Tag.find_by(name: 'Tag2')
       expect(Tag.with_bookmarks_for_user(user)).to include(tag1)
       expect(Tag.with_bookmarks_for_user(user)).to_not include(tag2)
     end
