@@ -10,6 +10,17 @@ describe Tag do
     end
   end
 
+  describe '#bookmarks_from_user' do
+    it 'only shows bookmarks belonging to a certain user' do
+      user = create(:user)
+      bookmark1 = create(:bookmark, tags_list: 'Tag1', user_id: user.id)
+      bookmark2 = create(:bookmark, url: 'http://example.com/page2', tags_list: 'Tag1')
+      tag = Tag.find_by(name: 'Tag1')
+      expect(tag.bookmarks_from_user(user)).to include(bookmark1)
+      expect(tag.bookmarks_from_user(user)).to_not include(bookmark2)
+    end
+  end
+
   it 'renders the name as a string' do
     tag = create(:tag)
     expect(tag.to_s).to eq tag.name

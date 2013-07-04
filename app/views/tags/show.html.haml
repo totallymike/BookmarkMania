@@ -1,3 +1,3 @@
 %ul
-  - @tag.bookmarks.each do |bookmark|
+  - @tag.bookmarks_from_user(current_user).each do |bookmark|
     %li= link_to bookmark.title, bookmark

@@ -6,6 +6,11 @@ class Tag < ActiveRecord::Base
   def self.with_bookmarks
     includes(:bookmarks).where.not('bookmarks.id' => nil).references(:bookmarks)
   end
+
+  def bookmarks_from_user(user)
+    bookmarks.where(user: user)
+  end
+
   def to_s
     self.name
   end
