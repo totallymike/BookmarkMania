@@ -26,10 +26,10 @@ feature 'The index of tags lists the names of all tags' do
   end
 
   scenario "The tags index does not display tags with no bookmarks" do
-    return pending
-    create(:bookmark, tags_list: 'Tag1, Tag2')
-    dead_guy = create(:bookmark, url: 'http://example.com/page2', tags_list: 'Tag3')
+    add_bookmark('http://example.com/page1', 'Tag1, Tag2')
+    add_bookmark('http://example.com/page2', 'Tag3')
 
+    dead_guy = @user.bookmarks.find_by(url: 'http://example.com/page2')
     dead_guy.delete
 
     visit(tags_path)
