@@ -16,7 +16,8 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(bookmark_params)
 
     if @bookmark.save
-      @bookmark.user = current_user
+      current_user.bookmarks << @bookmark
+      current_user.sites << @bookmark.site
       redirect_to @bookmark
     else
       flash[:error] = 'URL required'
