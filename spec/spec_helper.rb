@@ -45,6 +45,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include LoginMacros
+  config.include BookmarkMacros
 
   # Set up DatabaseCleaner
   config.use_transactional_fixtures = false

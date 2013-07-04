@@ -4,13 +4,8 @@ feature 'The index of sites lists the titles of all sites' do
   scenario 'A user views the list of sites' do
     user = log_in
 
-    visit root_path
-    fill_in 'bookmark_url', with: 'http://example.com/page1'
-    click_button 'Save'
-
-    visit root_path
-    fill_in 'bookmark_url', with: 'http://www.reddit.com/r/ruby'
-    click_button 'Save'
+    add_bookmark('http://example.com/page1')
+    add_bookmark('http://www.reddit.com/r/ruby')
 
     visit(sites_path)
 

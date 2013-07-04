@@ -4,10 +4,7 @@ feature 'The index of tags lists the names of all tags' do
   before(:each) { @user = log_in }
 
   scenario 'A user views the list of tags' do
-    visit root_path
-    fill_in 'bookmark_url', with: 'http://example.com/page1'
-    fill_in 'bookmark_tags_list', with: 'Tag1, Tag2'
-    click_button 'Save'
+    add_bookmark('http://example.com/page1', 'Tag1, Tag2')
 
     visit(tags_path)
 
@@ -20,10 +17,7 @@ feature 'The index of tags lists the names of all tags' do
       url: 'http://example.com/page2',
       tags_list: 'Tag2')
 
-    visit root_path
-    fill_in 'bookmark_url', with: 'http://example.com/page1'
-    fill_in 'bookmark_tags_list', with: 'Tag1'
-    click_button 'Save'
+    add_bookmark('http://example.com/page1', 'Tag1')
 
     visit tags_path
 

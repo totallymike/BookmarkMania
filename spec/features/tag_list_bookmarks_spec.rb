@@ -6,17 +6,10 @@ feature 'Tags link back to bookmarks' do
 
     create(:bookmark, url: 'http://example.com/page2', tags_list: 'Example1')
 
-    visit root_path
-    fill_in 'bookmark_url', with: 'http://example.com/page1'
-    fill_in 'bookmark_tags_list', with: 'Example1, Example2'
-    click_button 'Save'
+    add_bookmark('http://example.com/page1', 'Example1, Example2')
+    add_bookmark('http://www.reddit.com/r/ruby', 'Example1')
 
-    visit root_path
-    fill_in 'bookmark_url', with: 'http://www.reddit.com/r/ruby'
-    fill_in 'bookmark_tags_list', with: 'Example1'
-    click_button 'Save'
-
-    tag = user.tags.find_by(name: 'Example1')
+    tag = Tag.find_by(name: 'Example1')
     visit(tag_path(tag))
 
     expect(page).to have_link('Example Page Number 1!')
