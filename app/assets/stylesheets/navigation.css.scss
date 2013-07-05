@@ -1,0 +1,11 @@
+nav#main_nav {
+  li {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 4px 6px;
+    a, a:link, a:visited {
+      color: black;
+      text-decoration: none;
+    }
+  }
+}
