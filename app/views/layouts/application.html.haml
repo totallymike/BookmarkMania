@@ -1,12 +1,13 @@
 !!! 5
 %head
+  %meta{charset: 'utf-8'}
   %title BookmarkMania
   = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
   = javascript_include_tag "application", "data-turbolinks-track" => true
   = csrf_meta_tags
 %body
-  %div{class: 'navbar'}
-    = render 'shared/navbar'
+  %div{class: 'header'}
+    = render 'layouts/header'
 
   %div{class: 'wrapper'}
     %div{id: 'flash'}
