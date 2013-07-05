@@ -9,8 +9,12 @@
   = render 'layouts/header'
 
   %div{class: 'wrapper'}
-    %div{id: 'flash'}
-      %p{class: 'notice'}= flash[:notice]
-      %p{class: 'alert'}= flash[:alert]
+    - if notice
+      %p{class: 'notice'}
+        = notice
+    -if alert
+      %p{class: 'alert'}
+        = alert
+
     %section{id: 'content'}
       = yield
