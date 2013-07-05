@@ -6,11 +6,11 @@
   = javascript_include_tag "application", "data-turbolinks-track" => true
   = csrf_meta_tags
 %body
-  %div{class: 'header'}
-    = render 'layouts/header'
+  = render 'layouts/header'
 
   %div{class: 'wrapper'}
     %div{id: 'flash'}
       %p{class: 'notice'}= flash[:notice]
       %p{class: 'alert'}= flash[:alert]
-    = yield
+    %section{id: 'content'}
+      = yield
