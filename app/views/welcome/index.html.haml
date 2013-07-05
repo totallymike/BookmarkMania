@@ -1,12 +1,14 @@
-%h3 Add a bookmark
 = form_for(@bookmark) do |f|
-  %ul
-    %li
-      = f.label :url, 'URL'
-      = f.text_field :url
+  %fieldset
+    %legend Add a bookmark
+    %ul
+      %li
+        = f.label :url, 'URL'
+        = f.text_field :url, size: '60'
 
-    %li
-      = f.label :tags
-      = f.text_field :tags_list
+      %li
+        = f.label :tags
+        = f.text_field :tags_list, size: '60', |
+          placeholder: 'Comma separated list of tags'
 
-  = f.submit 'Save'
+    = f.submit 'Save'
