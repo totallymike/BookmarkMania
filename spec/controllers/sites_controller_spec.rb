@@ -19,36 +19,24 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SitesController do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Site. As you add validations to Site, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { { url: 'http://example.com' } }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # SitesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  before(:each) do
+    @user = create(:user)
+    sign_in @user
+  end
 
   describe "GET index" do
-    let(:user) {
-      user = create(:user)
-      sign_in user
-      return user
-    }
-
     it "assigns all sites as @sites" do
-      attached_site   = create(:site, user_id: user.id)
+      attached_site   = create(:site, user_id: @user.id)
       unattached_site = create(:site, url: 'http://www.reddit.com')
-      get :index, {}, valid_session
+      get :index
       assigns(:sites).should eq([attached_site])
     end
   end
 
   describe "GET show" do
     it "assigns the requested site as @site" do
-      site = create(:site)
-      get :show, {:id => site.to_param}, valid_session
+      site = create(:site, user_id: @user.id)
+      get :show, {:id => site.to_param}
       assigns(:site).should eq(site)
     end
   end
