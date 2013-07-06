@@ -1,3 +1,8 @@
+ul {
+  margin: 0 auto;
+  padding: 0;
+}
+
 header#page_header {
   overflow: hidden;
 
@@ -19,4 +24,32 @@ header#page_header {
 div.wrapper {
   max-width: 960px;
   margin: 10px auto 0px;
+}
+
+.item_list {
+  a {
+    padding-left: 1em;
+  }
+  li {
+    padding: 5px 0;
+  }
+  li:nth-child(odd) {
+    background-color: lightgrey;
+  }
+  li:nth-child(even) {
+    background-color: darkgrey;
+  }
+}
+
+ul.item_list {
+  list-style: none;
+
+  a,
+  a:link,
+  a:hover,
+  a:active,
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
 }

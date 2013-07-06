@@ -1,4 +1,5 @@
-%ul
+%h4= @site.title
+%ul{class: 'item_list'}
   - @site.bookmarks.each do |bookmark|
     %li= link_to bookmark.title, bookmark
 
