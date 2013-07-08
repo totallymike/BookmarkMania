@@ -1,4 +1,5 @@
 %div{id: 'bookmarks'}
-  %ul
+  %h4 Bookmark results:
+  %ul{class: 'item_list'}
     - @bookmarks.each do |bookmark|
-      %li= bookmark.title
+      %li= "#{bookmark.title} #{bookmark.url}"
