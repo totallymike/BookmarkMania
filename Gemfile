@@ -41,6 +41,8 @@ gem 'httparty'
 
 gem 'devise', :git => 'git://github.com/plataformatec/devise.git'
 
+gem 'squeel', :git => 'git://github.com/ernie/squeel.git'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'cucumber-rails', :require => false

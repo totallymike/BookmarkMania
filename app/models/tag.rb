@@ -4,15 +4,15 @@ class Tag < ActiveRecord::Base
   validates :name, uniqueness: true
 
   def self.with_bookmarks
-    includes(:bookmarks).where.not('bookmarks.id' => nil).references(:bookmarks)
+    joins{bookmarks.inner}
   end
 
   def self.with_bookmarks_for_user(user)
-    with_bookmarks.where('bookmarks.user_id' => user.id)
+    with_bookmarks.where{bookmarks.user_id.eq user_id}
   end
 
   def bookmarks_from_user(user)
-    bookmarks.where(user: user)
+    bookmarks.where{user_id.eq user.id}
   end
 
   def to_s
